@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.renancorredato.recyclerview.databinding.ResItemUserBinding
 
 class UserAdapter(
-    private val users: List<String>,
+    private val users: List<User>,
     private val onClick: (String) -> Unit,
 ) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
@@ -41,7 +41,7 @@ class UserAdapter(
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        holder.bind(users[position], onClick)
+        holder.bind(users[position].fullname, onClick)
     }
 
     override fun getItemCount(): Int {
