@@ -2,6 +2,7 @@ package com.renancorredato.recyclerview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.renancorredato.recyclerview.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,9 +15,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val users = mutableListOf<String>()
-        repeat(1000){
-            users.add("Renan Corredato $it" )
+        repeat(1000) {
+            users.add("Renan Corredato $it")
         }
-        binding.rvUser.adapter = UserAdapter(users)
+        binding.rvUser.adapter = UserAdapter(users) {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        }
     }
 }
