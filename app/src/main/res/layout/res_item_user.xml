@@ -16,13 +16,13 @@
         android:layout_marginBottom="16dp"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cbUser"
+        app:layout_constraintEnd_toStartOf="@+id/rbUser"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@tools:sample/full_names" />
 
-    <CheckBox
-        android:id="@+id/cbUser"
+    <RadioButton
+        android:id="@+id/rbUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

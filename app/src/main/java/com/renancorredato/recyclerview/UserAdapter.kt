@@ -1,12 +1,9 @@
 package com.renancorredato.recyclerview
 
-import android.util.Log
-import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.CheckBox
+import android.widget.RadioButton
 import android.widget.TextView
-import androidx.core.util.forEach
 import androidx.recyclerview.widget.RecyclerView
 import com.renancorredato.recyclerview.databinding.ResItemUserBinding
 
@@ -14,43 +11,35 @@ class UserAdapter(
     private val users: List<User>
 ) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
-    private val usersStateArray: SparseBooleanArray = SparseBooleanArray()
+    private var selectedPosition: Int = -1
 
     inner class UserViewHolder(itemView: ResItemUserBinding) :
         RecyclerView.ViewHolder(itemView.root) {
 
         private val tvNameUser: TextView
-        private val cbUser: CheckBox
+        private val rbUser: RadioButton
 
         init {
             tvNameUser = itemView.tvNameUser
-            cbUser = itemView.cbUser
+            rbUser = itemView.rbUser
         }
 
 
         fun bind(userName: String, position: Int) {
             tvNameUser.text = userName
-            cbUser.isChecked = usersStateArray[position, false]
-            cbUser.setOnClickListener {
-                usersStateArray.put(position, cbUser.isChecked)
-                Log.i("Renan", "==============")
-                usersStateArray.forEach { key, value ->
-
-                    Log.i("Renan", "$key - $value")
-                }
+            rbUser.isChecked = (position == selectedPosition)
+            rbUser.setOnClickListener {
+                val oldSelectdPosition = selectedPosition
+                selectedPosition = position
+                notifyItemChanged(oldSelectdPosition)
             }
         }
     }
 
 
-    fun getSelectedItems(): List<User>{
-        val selectedUser = mutableListOf<User>()
-        usersStateArray.forEach { key, value ->
-            if (value){
-                selectedUser.add(users[key])
-            }
-        }
-        return selectedUser
+    fun getSelectedItem(): User {
+        return users[selectedPosition]
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -64,7 +53,7 @@ class UserAdapter(
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        holder.bind(users[position].fullname,position)
+        holder.bind(users[position].fullname, position)
     }
 
     override fun getItemCount(): Int {

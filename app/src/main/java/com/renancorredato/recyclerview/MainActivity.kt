@@ -1,9 +1,8 @@
 package com.renancorredato.recyclerview
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.renancorredato.recyclerview.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -21,10 +20,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.rvUser.adapter = adapter
         binding.fabSelectedUser.setOnClickListener {
+            Log.i("Renan", adapter.getSelectedItem().toString())
 
-            adapter.getSelectedItems().forEach {
-                Log.i("Renan", it.toString())
-            }
         }
     }
 
