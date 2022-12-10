@@ -2,6 +2,7 @@ package com.renancorredato.recyclerview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.renancorredato.recyclerview.databinding.ActivityMainBinding
 
@@ -16,8 +17,14 @@ class MainActivity : AppCompatActivity() {
 
         val users = getData()
 
-        binding.rvUser.adapter = UserAdapter(users) {
-            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        val adapter = UserAdapter(users)
+
+        binding.rvUser.adapter = adapter
+        binding.fabSelectedUser.setOnClickListener {
+
+            adapter.getSelectedItems().forEach {
+                Log.i("Renan", it.toString())
+            }
         }
     }
 
