@@ -20,8 +20,14 @@ class MainActivity : AppCompatActivity() {
 
         binding.rvUser.adapter = adapter
         binding.fabSelectedUser.setOnClickListener {
-            Log.i("Renan", adapter.getSelectedItem().toString())
 
+            adapter.removedUser(
+                User(
+                    id = -1,
+                    name = "Novo",
+                    lastName = "Usuario"
+                )
+            )
         }
     }
 

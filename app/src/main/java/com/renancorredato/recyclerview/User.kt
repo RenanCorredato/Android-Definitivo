@@ -5,5 +5,6 @@ data class User(
     val id: Long,
     val lastName: String
 ) {
-    val fullname: String get() = "$name $lastName #$id"
+    //val fullname: String get() = "$name $lastName #$id"
+    val fullname: String get() = "$name $lastName"
 }
